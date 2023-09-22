@@ -1,0 +1,4 @@
+name: BRPayments
+version: 1.0-SNAPSHOT
+main: me.toddydev.bukkit.PaymentsPlugin
+description: A plugin to handle payments in a Bukkit server using the BR bank system.

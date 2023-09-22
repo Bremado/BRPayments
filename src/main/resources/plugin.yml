@@ -1,4 +1,0 @@
-name: BRPayments
-version: '${project.version}'
-main: me.toddydev.bukkit.BukkitMain
-author: Toddy
