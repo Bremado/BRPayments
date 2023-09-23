@@ -1,12 +1,10 @@
 package me.toddydev.core.model.rewards.item;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+@Builder
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

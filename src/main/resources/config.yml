@@ -4,3 +4,6 @@ database:
   username: user
   password: password
   database: database
+
+discord:
+  token: "MTEzOTYwMjQ0NzM1MDg5ODczOQ.Gr1U_J.QHAEvYEgTwrM7OPhTdbekWAG3Qr4k_Epkoxagg"

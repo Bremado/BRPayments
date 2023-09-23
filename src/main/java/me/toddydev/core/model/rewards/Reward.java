@@ -1,14 +1,13 @@
 package me.toddydev.core.model.rewards;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import me.toddydev.core.model.rewards.item.RewardItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+@Builder
+@Getter @Setter
 @AllArgsConstructor
 public class Reward {
 

@@ -4,6 +4,7 @@ import me.toddydev.core.Core;
 import me.toddydev.core.database.credentials.DatabaseCredentials;
 import me.toddydev.core.database.tables.Tables;
 import me.toddydev.core.plugin.BukkitPlugin;
+import me.toddydev.discord.Discord;
 
 public class BukkitMain extends BukkitPlugin {
 
@@ -26,6 +27,8 @@ public class BukkitMain extends BukkitPlugin {
     public void enable() {
         Tables.getUsers().create();
         Tables.getOrders().create();
+
+        Core.setDiscord(new Discord(this));
     }
 
     @Override

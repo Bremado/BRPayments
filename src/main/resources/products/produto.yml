@@ -1,0 +1,38 @@
+id: "DIAMOND-PICKAXE"
+price: 1.0
+name: "Picareta de Diamante"
+gateway:
+  - MERCADO_PAGO
+rewards:
+  commands:
+    - ""
+  items:
+    DIAMOND_PICKAXE:
+      id: 0
+      amount: 1
+actions:
+  COLLECT:
+    sound: LEVEL_UP
+    message: |
+        &aVocê coletou uma picareta de diamante!
+        &aAgora você pode quebrar blocos de obsidiana!
+    action-bar: "§eO seu pedido foi §bentregue§e!"
+    screen:
+      title: "§b§lPEDIDO ENTREGUE"
+      subtitle: "§eO seu pedido foi §bentregue§e com sucesso!"
+  REFUND:
+    sound: LEVEL_UP
+    message: |
+      &aO seu pedido foi reembolsado com sucesso.
+    action-bar: "§eO seu pedido foi §breembolsado§e"
+    screen:
+      title: "§c§lPEDIDO REEMBOLSADO"
+      subtitle: "§cO seu pedido foi §c§lREEMBOLSADO§c!"
+  EXPIRED:
+    sound: ANVIL_BREAK
+    message: |
+      &aO seu pedido expirou.
+    action-bar: "§eO seu pedido expirou."
+    screen:
+      title: "§c§lPEDIDO EXPIRADO"
+      subtitle: "§cO seu pedido §c§lEXPIROU§c!"
