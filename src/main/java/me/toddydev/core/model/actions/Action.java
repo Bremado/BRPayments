@@ -1,6 +1,7 @@
 package me.toddydev.core.model.actions;
 
 import lombok.*;
+import me.toddydev.core.model.actions.screen.Screen;
 import me.toddydev.core.model.actions.type.ActionType;
 import org.bukkit.Sound;
 
@@ -17,9 +18,6 @@ public class Action {
     private String message;
     private String actionBar;
 
-    // SCREEN
-    private String title;
-    private String subtitle;
-
+    private Screen screen;
 
 }

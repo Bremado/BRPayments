@@ -1,7 +1,7 @@
 id: "DIAMOND-PICKAXE"
 price: 1.0
 name: "Picareta de Diamante"
-gateway:
+gateways:
   - MERCADO_PAGO
 rewards:
   commands:

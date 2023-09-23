@@ -1,5 +1,6 @@
 package me.toddydev.bukkit;
 
+import me.toddydev.bukkit.loaders.ProductLoader;
 import me.toddydev.core.Core;
 import me.toddydev.core.database.credentials.DatabaseCredentials;
 import me.toddydev.core.database.tables.Tables;
@@ -27,6 +28,8 @@ public class BukkitMain extends BukkitPlugin {
     public void enable() {
         Tables.getUsers().create();
         Tables.getOrders().create();
+
+        ProductLoader.load(this);
 
         Core.setDiscord(new Discord(this));
     }

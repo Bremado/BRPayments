@@ -8,4 +8,13 @@ public enum ActionType {
     REFUND,
     EXPIRED;
 
+    public static ActionType find(String s) {
+        for (ActionType type : values()) {
+            if (type.name().equalsIgnoreCase(s)) {
+                return type;
+            }
+        }
+        return null;
+    }
+
 }
