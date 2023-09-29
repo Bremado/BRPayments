@@ -7,3 +7,12 @@ database:
 
 discord:
   token: "TOKEN"
+
+categories:
+  Example:
+    name: "Categoria Exemplo"
+    description:
+      - ""
+    icon:
+      material: DIAMOND
+      data: 0

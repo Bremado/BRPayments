@@ -1,6 +1,10 @@
 package me.toddydev.bukkit;
 
-import me.toddydev.bukkit.loaders.ProductLoader;
+import com.henryfabio.minecraft.inventoryapi.manager.InventoryManager;
+import me.toddydev.bukkit.loaders.categories.CategoryLoader;
+import me.toddydev.bukkit.loaders.commands.BukkitCommandLoader;
+import me.toddydev.bukkit.loaders.listeners.ListenerLoader;
+import me.toddydev.bukkit.loaders.products.ProductLoader;
 import me.toddydev.core.Core;
 import me.toddydev.core.database.credentials.DatabaseCredentials;
 import me.toddydev.core.database.tables.Tables;
@@ -29,7 +33,14 @@ public class BukkitMain extends BukkitPlugin {
         Tables.getUsers().create();
         Tables.getOrders().create();
 
+        CategoryLoader.load(this);
         ProductLoader.load(this);
+
+        ListenerLoader.load(this);
+
+        InventoryManager.enable(this);
+
+        BukkitCommandLoader.load(this);
 
         Core.setDiscord(new Discord(this));
     }

@@ -1,8 +1,15 @@
 id: "DIAMOND-PICKAXE"
-price: 1.0
+category: Example
 name: "Picareta de Diamante"
+price: 1.0
 gateways:
   - MERCADO_PAGO
+icon:
+  id: 0
+  name: "§bPicareta de Diamante"
+  material: DIAMOND_PICKAXE
+  description:
+    - "Descrição"
 rewards:
   commands:
     - ""

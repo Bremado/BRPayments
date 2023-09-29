@@ -1,10 +1,12 @@
-package me.toddydev.bukkit.loaders;
+package me.toddydev.bukkit.loaders.products;
 
 import me.toddydev.core.cache.Caching;
 import me.toddydev.core.model.Product;
 import me.toddydev.core.model.actions.Action;
 import me.toddydev.core.model.actions.screen.Screen;
 import me.toddydev.core.model.actions.type.ActionType;
+import me.toddydev.core.model.categories.Category;
+import me.toddydev.core.model.icon.Icon;
 import me.toddydev.core.model.rewards.Reward;
 import me.toddydev.core.model.rewards.item.RewardItem;
 import me.toddydev.core.player.order.gateways.Gateway;
@@ -46,12 +48,45 @@ public class ProductLoader {
         for (File f : files) {
             YamlConfiguration config = YamlConfiguration.loadConfiguration(f);
 
+            Category category = Caching.getCategoryCache().find(config.getString("category"));
+
+            if (category == null) {
+                plugin.getServer().getConsoleSender().sendMessage("[BRPayments] Não foi possível encontrar a categoria " + config.getString("category") + " para o produto " + config.getString("name") + ".");
+                continue;
+            }
+
             Product product = Product.builder()
                     .name(config.getString("name"))
                     .id(config.getString("id"))
                     .price(config.getDouble("price"))
+                    .category(category)
                     .rewards(Reward.builder().build()
                     ).build();
+
+
+            Material material = Material.getMaterial(config.getString("icon.material"));
+
+            if (material == null) {
+                material = Material.BARRIER;
+                plugin.getServer().getConsoleSender().sendMessage("[BRPayments] Não foi possível encontrar o material " + config.getString("icon.material") + " para o produto " + product.getName() + ". Portanto foi alterado para BARRIER.");
+            }
+
+            Icon icon = Icon.builder()
+                    .name(
+                            config.getString("icon.name").replace("&", "§")
+                    )
+                    .description(
+                            config.getStringList("icon.description")
+                    )
+                    .material(
+                            material
+                    )
+                    .id(
+                            config.getInt("icon.id")
+                    )
+                    .build();
+
+            product.setIcon(icon);
 
             List<Action> actions = new ArrayList<>();
             List<Gateway> gateways = new ArrayList<>();

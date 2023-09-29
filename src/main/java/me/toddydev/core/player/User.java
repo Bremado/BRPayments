@@ -15,7 +15,6 @@ public class User {
     private UUID uniqueId;
     private String name;
 
-
     private int totalOrders;
     private int totalPaid;
     private int totalRefunded;

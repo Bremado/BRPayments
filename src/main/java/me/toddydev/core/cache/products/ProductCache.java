@@ -1,6 +1,7 @@
 package me.toddydev.core.cache.products;
 
 import me.toddydev.core.model.Product;
+import me.toddydev.core.model.categories.Category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,10 @@ public class ProductCache {
 
     public List<Product> findByPrice(double price) {
         return products.stream().filter(p -> p.getPrice() == price).collect(Collectors.toList());
+    }
+
+    public List<Product> findByCategory(Category category) {
+        return products.stream().filter(p -> p.getCategory().equals(category)).collect(Collectors.toList());
     }
 
     public List<Product> findAll() {
