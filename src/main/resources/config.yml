@@ -5,6 +5,10 @@ database:
   password: password
   database: database
 
+gateways:
+  MERCADO_PAGO:
+    authentication: "token"
+
 discord:
   token: "TOKEN"
 
@@ -15,4 +19,4 @@ categories:
       - ""
     icon:
       material: DIAMOND
-      data: 0
+      id: 0

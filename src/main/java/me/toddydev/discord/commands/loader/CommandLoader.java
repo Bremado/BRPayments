@@ -1,6 +1,6 @@
 package me.toddydev.discord.commands.loader;
 
-import me.toddydev.core.utils.ClassGetter;
+import me.toddydev.core.utils.classes.ClassGetter;
 import me.toddydev.discord.commands.AbstractCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;

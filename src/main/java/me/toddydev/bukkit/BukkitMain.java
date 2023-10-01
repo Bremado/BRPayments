@@ -3,8 +3,10 @@ package me.toddydev.bukkit;
 import com.henryfabio.minecraft.inventoryapi.manager.InventoryManager;
 import me.toddydev.bukkit.loaders.categories.CategoryLoader;
 import me.toddydev.bukkit.loaders.commands.BukkitCommandLoader;
+import me.toddydev.bukkit.loaders.gateways.GatewayLoader;
 import me.toddydev.bukkit.loaders.listeners.ListenerLoader;
 import me.toddydev.bukkit.loaders.products.ProductLoader;
+import me.toddydev.bukkit.task.PayTask;
 import me.toddydev.core.Core;
 import me.toddydev.core.database.credentials.DatabaseCredentials;
 import me.toddydev.core.database.tables.Tables;
@@ -33,6 +35,7 @@ public class BukkitMain extends BukkitPlugin {
         Tables.getUsers().create();
         Tables.getOrders().create();
 
+        GatewayLoader.load(this);
         CategoryLoader.load(this);
         ProductLoader.load(this);
 
@@ -43,6 +46,8 @@ public class BukkitMain extends BukkitPlugin {
         BukkitCommandLoader.load(this);
 
         Core.setDiscord(new Discord(this));
+
+        new PayTask().runTaskTimerAsynchronously(this, 0, 20*60);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package me.toddydev.core.cache.categories;
 
-import me.toddydev.core.model.categories.Category;
+import me.toddydev.core.model.product.categories.Category;
 
 import java.util.ArrayList;
 import java.util.List;

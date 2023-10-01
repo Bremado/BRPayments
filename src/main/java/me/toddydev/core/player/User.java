@@ -19,6 +19,8 @@ public class User {
     private int totalPaid;
     private int totalRefunded;
 
+    private double balance;
+
     public User(UUID uniqueId, String name) {
         this.uniqueId = uniqueId;
         this.name = name;
@@ -26,5 +28,7 @@ public class User {
         this.totalOrders = 0;
         this.totalPaid = 0;
         this.totalRefunded = 0;
+
+        this.balance = 0;
     }
 }

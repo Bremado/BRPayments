@@ -1,7 +1,7 @@
 package me.toddydev.core.cache.products;
 
-import me.toddydev.core.model.Product;
-import me.toddydev.core.model.categories.Category;
+import me.toddydev.core.model.product.Product;
+import me.toddydev.core.model.product.categories.Category;
 
 import java.util.ArrayList;
 import java.util.List;

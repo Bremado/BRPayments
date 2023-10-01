@@ -1,7 +1,7 @@
 package me.toddydev.bukkit.loaders.commands;
 
 import me.toddydev.bukkit.commands.BukkitCommand;
-import me.toddydev.core.utils.ClassGetter;
+import me.toddydev.core.utils.classes.ClassGetter;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;

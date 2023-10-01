@@ -1,16 +1,16 @@
 package me.toddydev.bukkit.loaders.products;
 
 import me.toddydev.core.cache.Caching;
-import me.toddydev.core.model.Product;
-import me.toddydev.core.model.actions.Action;
-import me.toddydev.core.model.actions.screen.Screen;
-import me.toddydev.core.model.actions.type.ActionType;
-import me.toddydev.core.model.categories.Category;
-import me.toddydev.core.model.icon.Icon;
-import me.toddydev.core.model.rewards.Reward;
-import me.toddydev.core.model.rewards.item.RewardItem;
-import me.toddydev.core.player.order.gateways.Gateway;
-import okhttp3.Cache;
+import me.toddydev.core.model.order.gateway.Gateway;
+import me.toddydev.core.model.product.Product;
+import me.toddydev.core.model.product.actions.Action;
+import me.toddydev.core.model.product.actions.screen.Screen;
+import me.toddydev.core.model.product.actions.type.ActionType;
+import me.toddydev.core.model.product.categories.Category;
+import me.toddydev.core.model.product.icon.Icon;
+import me.toddydev.core.model.product.rewards.Reward;
+import me.toddydev.core.model.product.rewards.item.RewardItem;
+import me.toddydev.core.model.order.gateway.type.GatewayType;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.bukkit.Material.BARRIER;
 
 public class ProductLoader {
 
@@ -67,7 +69,7 @@ public class ProductLoader {
             Material material = Material.getMaterial(config.getString("icon.material"));
 
             if (material == null) {
-                material = Material.BARRIER;
+                material = BARRIER;
                 plugin.getServer().getConsoleSender().sendMessage("[BRPayments] Não foi possível encontrar o material " + config.getString("icon.material") + " para o produto " + product.getName() + ". Portanto foi alterado para BARRIER.");
             }
 
@@ -94,21 +96,28 @@ public class ProductLoader {
             List<String> commands = config.getStringList("rewards.commands");
 
             for (String s : config.getStringList("gateways")) {
-                Gateway g = Gateway.find(s.toUpperCase());
+                GatewayType g = GatewayType.find(s.toUpperCase());
 
                 if (g == null) {
                     plugin.getServer().getConsoleSender().sendMessage("[BRPayments] Não foi possível encontrar a gateway " + s + " para o produto " + product.getName() + ".");
                     continue;
                 }
 
-                gateways.add(g);
+                gateways.add(Caching.getGatewaysCache().find(g));
             }
 
             for (String s : config.getConfigurationSection("rewards.items").getKeys(false)) {
+
+                Material m = Material.getMaterial(s);
+
+                if (m == null) {
+                    m = BARRIER;
+                }
+
                 RewardItem item = RewardItem.builder()
-                        .material(Material.getMaterial(config.getString("rewards.items." + s)))
+                        .material(m)
                         .amount(config.getInt("rewards.items." + s + ".amount"))
-                        .data((short) config.getInt("rewards.items." + s + ".data"))
+                        .data((short) config.getInt("rewards.items." + s + ".id"))
                         .build();
 
                 items.add(item);
@@ -139,7 +148,7 @@ public class ProductLoader {
                         .message(config.getString("actions." + s + ".message").replace("&", "§"))
                         .screen(Screen.builder()
                                 .title(config.getString("actions." + s + ".screen.title"))
-                                .subtitle(config.getString("actions." + ".screen.subtitle"))
+                                .subtitle(config.getString("actions." + s + ".screen.subtitle"))
                                 .build())
                         .build();
 

@@ -5,8 +5,8 @@ import com.henryfabio.minecraft.inventoryapi.item.InventoryItem;
 import com.henryfabio.minecraft.inventoryapi.item.supplier.InventoryItemSupplier;
 import com.henryfabio.minecraft.inventoryapi.viewer.configuration.impl.ViewerConfigurationImpl;
 import com.henryfabio.minecraft.inventoryapi.viewer.impl.paged.PagedViewer;
+import me.toddydev.bukkit.menus.products.ProductsMenu;
 import me.toddydev.core.cache.Caching;
-import me.toddydev.core.model.categories.Category;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -33,7 +33,11 @@ public final class CategoryMenu extends PagedInventory {
         List<InventoryItemSupplier> items = new LinkedList<>();
 
         Caching.getCategoryCache().getCategories().forEach(category -> {
-            items.add(() -> InventoryItem.of(category.stack()));
+            items.add(() -> InventoryItem.of(category.stack()).defaultCallback(event -> {
+                event.setCancelled(true);
+                event.getPlayer().closeInventory();
+                new ProductsMenu(category).init().openInventory(event.getPlayer());
+            }));
         });
 
         return items;

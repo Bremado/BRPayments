@@ -4,11 +4,14 @@ import com.henryfabio.minecraft.inventoryapi.editor.InventoryEditor;
 import com.henryfabio.minecraft.inventoryapi.inventory.impl.simple.SimpleInventory;
 import com.henryfabio.minecraft.inventoryapi.item.InventoryItem;
 import com.henryfabio.minecraft.inventoryapi.viewer.Viewer;
+import me.toddydev.bukkit.menus.categories.CategoryMenu;
 import me.toddydev.core.cache.Caching;
 import me.toddydev.core.player.User;
 import me.toddydev.core.utils.item.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+
+import java.util.Locale;
 
 public final class IndexMenu extends SimpleInventory {
 
@@ -35,11 +38,13 @@ public final class IndexMenu extends SimpleInventory {
                         Material.SKULL_ITEM, 3
                 ).skullOwner(
                         viewer.getName()
-                ).lore(
+                ).name("§aSuas informações").lore(
                         "§7Visualize suas estatísticas.",
                         "",
+                        "  §8§l⬤ §fSeu saldo: §2R$§a" + String.format(new Locale("pt", "BR"), "%.2f", user.getBalance()),
+                        "",
+                        "  §8§l⬤ §fTotal Pago: §a" + user.getTotalPaid(),
                         "  §8§l⬤ §fTotal de Pedidos: §a" + user.getTotalOrders(),
-                        "  §8§l⬤ §fTotal Pago: §a " + user.getTotalPaid(),
                         "  §8§l⬤ §fTotal Reembolsado: §a" + user.getTotalRefunded(),
                         "",
                         "§eClique para fechar."
@@ -60,6 +65,8 @@ public final class IndexMenu extends SimpleInventory {
                         ).build()
         ).defaultCallback(event -> {
             event.setCancelled(true);
+            event.getPlayer().closeInventory();
+            new CategoryMenu().init().openInventory(event.getPlayer());
         });
 
         InventoryItem lastOrders = InventoryItem.of(

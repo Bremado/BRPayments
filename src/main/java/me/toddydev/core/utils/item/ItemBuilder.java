@@ -5,6 +5,7 @@ import com.mojang.authlib.properties.Property;
 import lombok.NoArgsConstructor;
 import org.apache.commons.codec.binary.Base64;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -23,6 +24,7 @@ public class ItemBuilder {
     public ItemBuilder(Material material, int id) {
         stack = new ItemStack(material, 1, (short) id);
         meta = stack.getItemMeta();
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DESTROYS, ItemFlag.HIDE_PLACED_ON, ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_ENCHANTS);
     }
 
     public ItemBuilder amount(int amount) {
@@ -50,10 +52,10 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder withSkullURL(String url) {
+    public ItemBuilder texture(String code) {
         SkullMeta skullMeta = (SkullMeta) meta;
         GameProfile profile = new GameProfile(UUID.randomUUID(), null);
-        byte[] encodedData = Base64.encodeBase64(String.format("{textures:{SKIN:{url:\"%s\"}}}", url).getBytes());
+        byte[] encodedData = Base64.encodeBase64(String.format("{textures:{SKIN:{url:\"%s\"}}}", "https://textures.minecraft.net/texture/" + code).getBytes());
         profile.getProperties().put("textures", new Property("textures", new String(encodedData)));
         Field profileField = null;
         try {
