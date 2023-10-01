@@ -34,7 +34,7 @@ public class MPService {
 
         object.addProperty("external_reference", order.getReferenceId());
         object.addProperty("payment_method_id", "pix");
-        object.addProperty("transaction_amount", new BigDecimal(format.format(order.getCost())));
+        object.addProperty("transaction_amount", new BigDecimal(format.format(order.getCost()).replace(",", ".")).doubleValue());
 
         try {
             OkHttpClient client = new OkHttpClient();
