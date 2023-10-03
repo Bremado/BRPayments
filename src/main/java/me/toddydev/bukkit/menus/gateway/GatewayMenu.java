@@ -4,6 +4,7 @@ import com.henryfabio.minecraft.inventoryapi.editor.InventoryEditor;
 import com.henryfabio.minecraft.inventoryapi.inventory.impl.simple.SimpleInventory;
 import com.henryfabio.minecraft.inventoryapi.item.InventoryItem;
 import com.henryfabio.minecraft.inventoryapi.viewer.Viewer;
+import me.toddydev.bukkit.BukkitMain;
 import me.toddydev.bukkit.menus.products.ProductsMenu;
 import me.toddydev.core.api.qrcore.ImageCreator;
 import me.toddydev.core.cache.Caching;
@@ -55,14 +56,14 @@ public class GatewayMenu extends SimpleInventory {
                     player.closeInventory();
 
                     if (Caching.getOrdersCache().findByPayer(player.getUniqueId()) != null) {
-                        player.sendMessage("§cVocê já possui um pedido em andamento, aguarde...");
+                        player.sendMessage(BukkitMain.getMessagesConfig().getString("already-have-order").replace("&", "§"));
                         return;
                     }
 
                     for (int i = 0; i < player.getInventory().getSize(); i++) {
                         if (player.getInventory().getItem(i) != null) {
                             if (!product.getRewards().getItems().isEmpty()) {
-                                player.sendMessage("§cVocê precisa estar com o inventário vazio para realizar a compra.");
+                                player.sendMessage(BukkitMain.getMessagesConfig().getString("must-inventory-clean").replace("&", "§"));
                                 return;
                             }
                         }

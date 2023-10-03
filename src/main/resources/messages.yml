@@ -1,0 +1,4 @@
+already-have-order: "&cVocê já possui um pedido em andamento."
+must-inventory-clean: "&cSeu inventário deve estar limpo para fazer um pedido."
+success-payment-link: "{nl}&a&lSUCESSO: &fClique (here)&a&lAQUI(/here) &fpara pagar o produto via Mercado Pago.{nl}"
+success-payment-link-hover: "&eClique para abrir o link!"

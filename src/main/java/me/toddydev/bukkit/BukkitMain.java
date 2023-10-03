@@ -1,6 +1,7 @@
 package me.toddydev.bukkit;
 
 import com.henryfabio.minecraft.inventoryapi.manager.InventoryManager;
+import lombok.Getter;
 import me.toddydev.bukkit.loaders.categories.CategoryLoader;
 import me.toddydev.bukkit.loaders.commands.BukkitCommandLoader;
 import me.toddydev.bukkit.loaders.gateways.GatewayLoader;
@@ -12,12 +13,19 @@ import me.toddydev.core.database.credentials.DatabaseCredentials;
 import me.toddydev.core.database.tables.Tables;
 import me.toddydev.core.plugin.BukkitPlugin;
 import me.toddydev.discord.Discord;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+import java.io.File;
 
 public class BukkitMain extends BukkitPlugin {
+
+    @Getter
+    private static YamlConfiguration messagesConfig;
 
     @Override
     public void load() {
         saveDefaultConfig();
+        loadConfig();
 
         Core.getDatabase().start(
                 new DatabaseCredentials(
@@ -32,6 +40,7 @@ public class BukkitMain extends BukkitPlugin {
 
     @Override
     public void enable() {
+        loadConfig();
         Tables.getUsers().create();
         Tables.getOrders().create();
 
@@ -48,6 +57,16 @@ public class BukkitMain extends BukkitPlugin {
         Core.setDiscord(new Discord(this));
 
         new PayTask().runTaskTimerAsynchronously(this, 0, 20*60);
+    }
+
+    private void loadConfig() {
+        File f = new File(getDataFolder(), "messages.yml");
+
+        if (!f.exists()) {
+            saveResource("messages.yml", false);
+        }
+
+        messagesConfig = YamlConfiguration.loadConfiguration(f);
     }
 
     @Override

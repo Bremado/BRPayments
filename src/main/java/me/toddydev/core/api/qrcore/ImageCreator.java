@@ -62,15 +62,12 @@ public class ImageCreator {
 
             Order o = Caching.getOrdersCache().findByPayer(player.getUniqueId());
 
-            TextComponent component = new TextComponent("\n§a§lSUCESSO: §fClique ");
-            TextComponent here = new TextComponent("§a§lAQUI");
-            TextComponent component1 = new TextComponent("§f para pagar o produto via Mercado Pago.\n");
+            TextComponent component = new TextComponent(BukkitMain.getMessagesConfig().getString("success-payment-link")
+                    .replace("&","§")
+                    .replace("{nl}", "\n"));
 
-            here.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText("§eClique para pagar.")));
-            here.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, o.getTicketLink()));
-
-            component.addExtra(here);
-            component.addExtra(component1);
+            component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(BukkitMain.getMessagesConfig().getString("success-payment-link-hover").replace("&", "§").replace("{nl}", "\n"))));
+            component.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, o.getTicketLink()));
 
             player.spigot().sendMessage(component);
 
