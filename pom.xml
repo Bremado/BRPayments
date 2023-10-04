@@ -27,6 +27,10 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -55,7 +59,7 @@
             <artifactId>spigot</artifactId>
             <version>1.8-R0.1-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>D:/workspace/spigot.jar</systemPath>
+            <systemPath>C:/Users/Sadness/Documents/Buildtools/spigot.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -77,6 +81,12 @@
             <groupId>com.squareup.okhttp</groupId>
             <artifactId>okhttp</artifactId>
             <version>2.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.4</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

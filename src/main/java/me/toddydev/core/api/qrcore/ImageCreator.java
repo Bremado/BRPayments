@@ -5,6 +5,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import me.toddydev.bukkit.BukkitMain;
+import me.toddydev.bukkit.placeholderapi.PlaceholderLoader;
 import me.toddydev.core.cache.Caching;
 import me.toddydev.core.model.order.Order;
 import me.toddydev.core.utils.item.ItemBuilder;
@@ -55,11 +56,16 @@ public class ImageCreator {
 
             Order o = Caching.getOrdersCache().findByPayer(player.getUniqueId());
 
-            TextComponent component = new TextComponent(BukkitMain.getMessagesConfig().getString("success-payment-link")
+            TextComponent component = new TextComponent(PlaceholderLoader.setPlaceholders(player, BukkitMain.getMessagesConfig().getString("success-payment-link")
                     .replace("&","§")
-                    .replace("{nl}", "\n"));
+                    .replace("{nl}", "\n")
+                    .replace("{ticket_link}", o.getTicketLink())
+            ));
 
-            component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(BukkitMain.getMessagesConfig().getString("success-payment-link-hover").replace("&", "§").replace("{nl}", "\n"))));
+            component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(
+                    PlaceholderLoader.setPlaceholders(player, BukkitMain.getMessagesConfig().getString("success-payment-link-hover")
+                            .replace("&", "§")
+                            .replace("{nl}", "\n")))));
             component.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, o.getTicketLink()));
 
             player.spigot().sendMessage(component);

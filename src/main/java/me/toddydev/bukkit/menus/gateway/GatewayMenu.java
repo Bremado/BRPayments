@@ -6,6 +6,7 @@ import com.henryfabio.minecraft.inventoryapi.item.InventoryItem;
 import com.henryfabio.minecraft.inventoryapi.viewer.Viewer;
 import me.toddydev.bukkit.BukkitMain;
 import me.toddydev.bukkit.menus.products.ProductsMenu;
+import me.toddydev.bukkit.placeholderapi.PlaceholderLoader;
 import me.toddydev.core.api.qrcore.ImageCreator;
 import me.toddydev.core.cache.Caching;
 import me.toddydev.core.database.tables.Tables;
@@ -56,14 +57,20 @@ public class GatewayMenu extends SimpleInventory {
                     player.closeInventory();
 
                     if (Caching.getOrdersCache().findByPayer(player.getUniqueId()) != null) {
-                        player.sendMessage(BukkitMain.getMessagesConfig().getString("already-have-order").replace("&", "§"));
+                        player.sendMessage(PlaceholderLoader.setPlaceholders(event.getPlayer(),
+                            BukkitMain.getMessagesConfig().getString("already-have-order")
+                                .replace("&", "§")
+                        ));
                         return;
                     }
 
                     for (int i = 0; i < player.getInventory().getSize(); i++) {
                         if (player.getInventory().getItem(i) != null) {
                             if (!product.getRewards().getItems().isEmpty()) {
-                                player.sendMessage(BukkitMain.getMessagesConfig().getString("must-inventory-clean").replace("&", "§"));
+                                player.sendMessage(PlaceholderLoader.setPlaceholders(event.getPlayer(),
+                                        BukkitMain.getMessagesConfig().getString("must-inventory-clean")
+                                                .replace("&", "§")
+                                ));
                                 return;
                             }
                         }

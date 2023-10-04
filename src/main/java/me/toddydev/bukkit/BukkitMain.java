@@ -7,6 +7,7 @@ import me.toddydev.bukkit.loaders.commands.BukkitCommandLoader;
 import me.toddydev.bukkit.loaders.gateways.GatewayLoader;
 import me.toddydev.bukkit.loaders.listeners.ListenerLoader;
 import me.toddydev.bukkit.loaders.products.ProductLoader;
+import me.toddydev.bukkit.placeholderapi.PlaceholderLoader;
 import me.toddydev.bukkit.task.PayTask;
 import me.toddydev.core.Core;
 import me.toddydev.core.database.credentials.DatabaseCredentials;
@@ -57,6 +58,8 @@ public class BukkitMain extends BukkitPlugin {
         GatewayLoader.load(this);
         CategoryLoader.load(this);
         ProductLoader.load(this);
+
+        PlaceholderLoader.load();
 
         ListenerLoader.load(this);
 
