@@ -27,15 +27,25 @@ public class BukkitMain extends BukkitPlugin {
         saveDefaultConfig();
         loadConfig();
 
-        Core.getDatabase().start(
-                new DatabaseCredentials(
-                        getConfig().getString("database.host"),
-                        getConfig().getString("database.port"),
-                        getConfig().getString("database.username"),
-                        getConfig().getString("database.password"),
-                        getConfig().getString("database.database")
-                )
+        DatabaseCredentials credentials = new DatabaseCredentials(
+                getConfig().getString("database.host"),
+                getConfig().getString("database.port"),
+                getConfig().getString("database.username"),
+                getConfig().getString("database.password"),
+                getConfig().getString("database.database")
         );
+
+        if (credentials.getUsername().equals("change-me") ||
+            credentials.getPassword().equals("change-me") ||
+            credentials.getDatabase().equals("change-me")) {
+
+            getLogger().severe("You need to alter the database credentials in your config.yml!");
+            getLogger().severe("Disabling plugin...");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
+        Core.getDatabase().start(credentials);
     }
 
     @Override

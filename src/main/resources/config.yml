@@ -1,16 +1,16 @@
 database:
   host: 127.0.0.1
   port: 3306
-  username: user
-  password: password
-  database: database
+  username: "change-me"
+  password: "change-me"
+  database: "change-me"
 
 gateways:
   MERCADO_PAGO:
-    authentication: "token"
+    authentication: "change-me"
 
 discord:
-  token: "TOKEN"
+  token: "change-me"
   channels:
     sell: "CHANNEL_ID"
 
