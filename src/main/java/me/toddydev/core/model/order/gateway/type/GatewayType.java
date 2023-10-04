@@ -1,5 +1,7 @@
 package me.toddydev.core.model.order.gateway.type;
 
+import org.jetbrains.annotations.Nullable;
+
 public enum GatewayType {
 
     MERCADO_PAGO,
@@ -7,6 +9,7 @@ public enum GatewayType {
     STRIPE,
     PAG_SEGURO;
 
+    @Nullable
     public static GatewayType find(String value) {
         for (GatewayType gatewayType : values()) {
             if (gatewayType.name().equalsIgnoreCase(value)) {

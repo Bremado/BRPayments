@@ -2,7 +2,6 @@ package me.toddydev.core.model.order;
 
 import lombok.*;
 import me.toddydev.core.model.order.gateway.Gateway;
-import me.toddydev.core.model.order.gateway.type.GatewayType;
 import me.toddydev.core.model.order.status.OrderStatus;
 
 import java.util.UUID;

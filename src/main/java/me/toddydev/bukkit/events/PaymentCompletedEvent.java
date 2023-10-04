@@ -3,7 +3,6 @@ package me.toddydev.bukkit.events;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import me.toddydev.core.model.order.Order;
-import me.toddydev.core.model.order.status.OrderStatus;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;

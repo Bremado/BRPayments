@@ -6,7 +6,6 @@ import me.toddydev.core.model.product.actions.Action;
 import me.toddydev.core.model.product.categories.Category;
 import me.toddydev.core.model.product.icon.Icon;
 import me.toddydev.core.model.product.rewards.Reward;
-import me.toddydev.core.model.order.gateway.type.GatewayType;
 
 import java.util.List;
 

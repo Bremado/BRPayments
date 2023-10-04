@@ -8,13 +8,10 @@ import me.toddydev.core.database.tables.Tables;
 import me.toddydev.core.model.order.Order;
 import me.toddydev.core.model.order.status.OrderStatus;
 import me.toddydev.core.services.Services;
-import okhttp3.OkHttp;
-import okhttp3.OkHttpClient;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 

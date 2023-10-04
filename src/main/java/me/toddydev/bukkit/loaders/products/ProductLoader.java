@@ -2,6 +2,7 @@ package me.toddydev.bukkit.loaders.products;
 
 import me.toddydev.core.cache.Caching;
 import me.toddydev.core.model.order.gateway.Gateway;
+import me.toddydev.core.model.order.gateway.type.GatewayType;
 import me.toddydev.core.model.product.Product;
 import me.toddydev.core.model.product.actions.Action;
 import me.toddydev.core.model.product.actions.screen.Screen;
@@ -10,7 +11,6 @@ import me.toddydev.core.model.product.categories.Category;
 import me.toddydev.core.model.product.icon.Icon;
 import me.toddydev.core.model.product.rewards.Reward;
 import me.toddydev.core.model.product.rewards.item.RewardItem;
-import me.toddydev.core.model.order.gateway.type.GatewayType;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;

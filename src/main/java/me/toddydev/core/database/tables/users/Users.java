@@ -3,7 +3,6 @@ package me.toddydev.core.database.tables.users;
 import me.toddydev.core.Core;
 import me.toddydev.core.player.User;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.UUID;

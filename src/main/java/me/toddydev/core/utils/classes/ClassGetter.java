@@ -1,12 +1,14 @@
 package me.toddydev.core.utils.classes;
 
-import org.bukkit.plugin.java.*;
+import org.bukkit.plugin.java.JavaPlugin;
 
-import java.security.*;
-import java.net.*;
-import java.io.*;
-import java.util.jar.*;
-import java.util.*;
+import java.io.IOException;
+import java.net.URL;
+import java.security.CodeSource;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 public class ClassGetter {
 

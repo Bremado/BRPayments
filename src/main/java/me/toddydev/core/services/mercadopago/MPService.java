@@ -5,8 +5,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import me.toddydev.core.model.order.Order;
 import me.toddydev.core.model.order.status.OrderStatus;
-import me.toddydev.core.model.product.Product;
-import me.toddydev.core.utils.keys.RandomKey;
 import okhttp3.*;
 import org.bukkit.Bukkit;
 
