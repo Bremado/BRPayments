@@ -14,7 +14,7 @@ O **BRPayments** é uma adição versátil e fácil de usar para o seu servidor 
 
 - **Sistema de Permissões**: Administradores podem definir quais jogadores têm acesso à loja, garantindo uma experiência equilibrada e justa para todos. (EM BREVE)
 
-- **Ingeração com o Discord**: Os jogadores e administradores poderão comprar recursos na loja, olhar transações tudo pelo Discord. (EM BREVE)
+- **Interação com o Discord**: Os jogadores e administradores poderão comprar recursos na loja, olhar transações tudo pelo Discord. (EM BREVE)
 
 ## Instalação
 
