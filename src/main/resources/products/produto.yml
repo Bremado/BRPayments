@@ -11,9 +11,9 @@ icon:
   description:
     - "Descrição"
 rewards:
-  commands:
-    - ""
-  items:
+  commands: # Caso não queira executar nenhum comando, deixe: commands: {}
+    - "Seu comando aqui"
+  items: # Caso não queira dar nenhum item, deixe: items: {}
     DIAMOND_PICKAXE:
       id: 0
       amount: 1

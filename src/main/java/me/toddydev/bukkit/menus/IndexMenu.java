@@ -47,8 +47,7 @@ public final class IndexMenu extends SimpleInventory {
                         "  §8§l⬤ §fTotal de Pedidos: §a" + user.getTotalOrders(),
                         "  §8§l⬤ §fTotal Reembolsado: §a" + user.getTotalRefunded(),
                         "",
-                        "§eClique para fechar."
-                        )
+                        "§eClique para fechar.")
                         .build()
         ).defaultCallback(event -> {
             event.setCancelled(true);

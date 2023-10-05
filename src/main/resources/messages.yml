@@ -2,3 +2,12 @@ already-have-order: "&cVocê já possui um pedido em andamento."
 must-inventory-clean: "&cSeu inventário deve estar limpo para fazer um pedido."
 success-payment-link: "{nl}&a&lSUCESSO: &fClique (here)&a&lAQUI(/here) &fpara pagar o produto via Mercado Pago.{nl}"
 success-payment-link-hover: "&eClique para abrir o link!"
+
+command-shop-usage: "&cSintaxe incorreta, utilize '/shop' para abrir o menu de informações."
+command-shop-product-usage: "&cSintaxe incorreta, utilize '/shop product [produto]' para ver os detalhes de um produto."
+command-shop-category-usage: "&cSintaxe incorreta, utilize '/shop category [categoria]' para ver os produtos de uma categoria."
+command-shop-category-not-found: "&cA categoria digitada não existe."
+
+item-qrcode-name: "&aQR Code"
+item-qrcode-description:
+  - "&7O pagamento será processado em 2 minutos."

@@ -3,9 +3,11 @@ package me.toddydev.core.api.qrcore;
 import java.awt.image.BufferedImage;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import me.toddydev.bukkit.BukkitMain;
+import me.toddydev.core.api.placeholder.PlaceholderLoader;
 import me.toddydev.core.cache.Caching;
 import me.toddydev.core.model.order.Order;
 import me.toddydev.core.utils.item.ItemBuilder;
@@ -47,10 +49,12 @@ public class ImageCreator {
                 }
             });
 
+            List<String> lore = PlaceholderLoader.setPlaceholders(player, BukkitMain.getMessagesConfig().getStringList("item-qrcode-description"));
+            lore.replaceAll(line -> line.replace("&", "§"));
             ItemStack item = new ItemBuilder(Material.MAP, mapView.getId())
-                    .name("§aExpira em 1 minuto.")
+                    .name(PlaceholderLoader.setPlaceholders(player, BukkitMain.getMessagesConfig().getString("item-qrcode-name").replace("&", "§")))
                     .lore(
-                            "§7O pagamento será processado em até 1 minuto."
+                            lore
                     ).build();
 
             net.minecraft.server.v1_8_R3.ItemStack nms = CraftItemStack.asNMSCopy(item);
@@ -62,11 +66,17 @@ public class ImageCreator {
 
             Order o = Caching.getOrdersCache().findByPayer(player.getUniqueId());
 
-            TextComponent component = new TextComponent(BukkitMain.getMessagesConfig().getString("success-payment-link")
+            TextComponent component = new TextComponent(PlaceholderLoader.setPlaceholders(player, BukkitMain.getMessagesConfig().getString("success-payment-link")
                     .replace("&","§")
-                    .replace("{nl}", "\n"));
+                    .replace("{nl}", "\n")
+                    .replace("{ticket_link}", o.getTicketLink())
+            ));
 
-            component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(BukkitMain.getMessagesConfig().getString("success-payment-link-hover").replace("&", "§").replace("{nl}", "\n"))));
+            component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, TextComponent.fromLegacyText(
+                    PlaceholderLoader.setPlaceholders(player, BukkitMain.getMessagesConfig().getString("success-payment-link-hover")
+                            .replace("&", "§")
+                            .replace("{nl}", "\n")))));
+
             component.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, o.getTicketLink()));
 
             player.spigot().sendMessage(component);

@@ -3,7 +3,9 @@ package me.toddydev.core.database;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
+import me.toddydev.bukkit.BukkitMain;
 import me.toddydev.core.database.credentials.DatabaseCredentials;
+import org.bukkit.Bukkit;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -28,7 +30,12 @@ public class Database {
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 
-        dataSource = new HikariDataSource(config);
+        try {
+            dataSource = new HikariDataSource(config);
+        } catch (Exception e) {
+            BukkitMain.getInstance().getLogger().severe("Failed to connect to the database! Please check your credentials and try again. (" + e.getLocalizedMessage() + ")");
+            Bukkit.getPluginManager().disablePlugin(BukkitMain.getInstance());
+        }
 
     }
 

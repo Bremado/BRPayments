@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class ConnectionListener implements Listener {
 
     @EventHandler
-    public void onJoin(AsyncPlayerPreLoginEvent event) {
+    public void onAsyncPreLogin(AsyncPlayerPreLoginEvent event) {
         User user = Tables.getUsers().find(event.getUniqueId());
 
         if (user == null) {

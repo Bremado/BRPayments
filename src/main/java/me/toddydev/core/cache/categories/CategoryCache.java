@@ -20,6 +20,10 @@ public class CategoryCache {
     public Category find(String id) {
         return categories.stream().filter(category -> category.getId().equals(id)).findFirst().orElse(null);
     }
+    public Category findIgnoreCase(String id) {
+        return categories.stream().filter(category -> category.getId().equals(id)).findFirst().orElse(null);
+    }
+
 
     public List<Category> getCategories() {
         return categories;
