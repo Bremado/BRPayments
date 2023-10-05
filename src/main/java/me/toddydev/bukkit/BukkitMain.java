@@ -12,6 +12,7 @@ import me.toddydev.core.Core;
 import me.toddydev.core.database.credentials.DatabaseCredentials;
 import me.toddydev.core.database.tables.Tables;
 import me.toddydev.core.plugin.BukkitPlugin;
+import me.toddydev.core.utils.metrics.Metrics;
 import me.toddydev.discord.Discord;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -40,7 +41,6 @@ public class BukkitMain extends BukkitPlugin {
 
     @Override
     public void enable() {
-        loadConfig();
         Tables.getUsers().create();
         Tables.getOrders().create();
 
@@ -56,6 +56,7 @@ public class BukkitMain extends BukkitPlugin {
 
         Core.setDiscord(new Discord(this));
 
+        new Metrics(this, 19978);
         new PayTask().runTaskTimerAsynchronously(this, 0, 20*60);
     }
 

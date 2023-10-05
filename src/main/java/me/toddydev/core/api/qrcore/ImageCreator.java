@@ -9,7 +9,9 @@ import java.util.concurrent.TimeUnit;
 import me.toddydev.bukkit.BukkitMain;
 import me.toddydev.core.api.placeholder.PlaceholderLoader;
 import me.toddydev.core.cache.Caching;
+import me.toddydev.core.database.tables.Tables;
 import me.toddydev.core.model.order.Order;
+import me.toddydev.core.player.User;
 import me.toddydev.core.utils.item.ItemBuilder;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -64,6 +66,7 @@ public class ImageCreator {
             item = CraftItemStack.asBukkitCopy(nms);
             player.setMetadata("brpayments:order", new FixedMetadataValue(BukkitMain.getInstance(), System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(1)));
 
+            User user = Caching.getUserCache().find(player.getUniqueId());
             Order o = Caching.getOrdersCache().findByPayer(player.getUniqueId());
 
             TextComponent component = new TextComponent(PlaceholderLoader.setPlaceholders(player, BukkitMain.getMessagesConfig().getString("success-payment-link")
@@ -80,6 +83,13 @@ public class ImageCreator {
             component.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, o.getTicketLink()));
 
             player.spigot().sendMessage(component);
+
+            if (player.getItemInHand() != null && player.getItemInHand().getType() != Material.AIR) {
+                user.setItemInHand(player.getItemInHand());
+            }
+
+            user.setTotalOrders(user.getTotalOrders() + 1);
+            Tables.getUsers().update(user);
 
             player.setItemInHand(item);
         } catch (Exception e) {}

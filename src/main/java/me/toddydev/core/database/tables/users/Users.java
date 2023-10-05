@@ -13,7 +13,7 @@ public class Users {
     public void create() {
         try {
             PreparedStatement ps = Core.getDatabase().getConnection().prepareStatement(
-                    "CREATE TABLE IF NOT EXISTS users(uniqueId VARCHAR(36) PRIMARY KEY, name VARCHAR(16), totalOrders INT, totalPaid INT, totalRefunded INT, balance DOUBLE);"
+                    "CREATE TABLE IF NOT EXISTS users(uniqueId VARCHAR(36) PRIMARY KEY, name VARCHAR(16), totalOrders INT, totalPaid DOUBLE, totalRefunded DOUBLE, balance DOUBLE);"
             );
             ps.execute();
             ps.close();
@@ -30,8 +30,8 @@ public class Users {
             ps.setString(1, user.getUniqueId().toString());
             ps.setString(2, user.getName());
             ps.setInt(3, user.getTotalOrders());
-            ps.setInt(4, user.getTotalPaid());
-            ps.setInt(5, user.getTotalRefunded());
+            ps.setDouble(4, user.getTotalPaid());
+            ps.setDouble(5, user.getTotalRefunded());
             ps.setDouble(6, user.getBalance());
             ps.executeUpdate();
             ps.close();
@@ -54,9 +54,10 @@ public class Users {
                         UUID.fromString(ps.getResultSet().getString("uniqueId")),
                         ps.getResultSet().getString("name"),
                         ps.getResultSet().getInt("totalOrders"),
-                        ps.getResultSet().getInt("totalPaid"),
-                        ps.getResultSet().getInt("totalRefunded"),
-                        ps.getResultSet().getDouble("balance")
+                        ps.getResultSet().getDouble("totalPaid"),
+                        ps.getResultSet().getDouble("totalRefunded"),
+                        ps.getResultSet().getDouble("balance"),
+                        null
                 );
             }
         } catch (SQLException e) {
@@ -77,9 +78,10 @@ public class Users {
                         UUID.fromString(ps.getResultSet().getString("uniqueId")),
                         ps.getResultSet().getString("name"),
                         ps.getResultSet().getInt("totalOrders"),
-                        ps.getResultSet().getInt("totalPaid"),
-                        ps.getResultSet().getInt("totalRefunded"),
-                        ps.getResultSet().getDouble("balance")
+                        ps.getResultSet().getDouble("totalPaid"),
+                        ps.getResultSet().getDouble("totalRefunded"),
+                        ps.getResultSet().getDouble("balance"),
+                        null
                 );
             }
         } catch (SQLException e) {
@@ -95,10 +97,10 @@ public class Users {
             );
             ps.setString(1, user.getName());
             ps.setInt(2, user.getTotalOrders());
-            ps.setInt(3, user.getTotalPaid());
-            ps.setInt(4, user.getTotalRefunded());
-            ps.setString(5, user.getUniqueId().toString());
-            ps.setDouble(6, user.getBalance());
+            ps.setDouble(3, user.getTotalPaid());
+            ps.setDouble(4, user.getTotalRefunded());
+            ps.setDouble(5, user.getBalance());
+            ps.setString(6, user.getUniqueId().toString());
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {

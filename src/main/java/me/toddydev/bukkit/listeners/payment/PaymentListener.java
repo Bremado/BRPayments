@@ -10,27 +10,34 @@ import me.toddydev.core.cache.Caching;
 import me.toddydev.core.model.product.Product;
 import me.toddydev.core.model.product.actions.Action;
 import me.toddydev.core.model.product.actions.type.ActionType;
+import me.toddydev.core.player.User;
 import me.toddydev.discord.enums.MessageChannel;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.utils.data.DataObject;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 import org.github.paperspigot.Title;
 
 import java.awt.*;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.Locale;
 
 import static me.toddydev.discord.enums.MessageChannel.SELL;
+import static org.bukkit.Material.MAP;
 
 public class PaymentListener implements Listener {
 
     @EventHandler
     public void onPaymentCompleted(PaymentCompletedEvent event) {
         Player player = event.getPlayer();
+        User user = Caching.getUserCache().find(player.getUniqueId());
         Product product = Caching.getProductCache().findById(event.getOrder().getProductId());
 
         Action action = product.getActions().stream().filter(a -> a.getType().equals(ActionType.COLLECT)).findAny().orElse(null);
@@ -54,6 +61,20 @@ public class PaymentListener implements Listener {
         TaskChain.newChain().add(new TaskChain.GenericTask() {
             @Override
             protected void run() {
+                for (int slot : player.getInventory().all(Material.MAP).keySet()) {
+                    ItemStack stack = player.getInventory().getItem(slot);
+                    if (stack == null)continue;
+                    if (stack.getType() != MAP)continue;
+
+                    net.minecraft.server.v1_8_R3.ItemStack nms = CraftItemStack.asNMSCopy(stack);
+
+                    if (nms.getTag() == null)continue;
+                    if (nms.getTag().getString("brpayments:order") == null)continue;
+
+                    player.getInventory().setItem(slot, user.getItemInHand());
+                    user.setItemInHand(null);
+                    break;
+                }
 
                 product.getRewards().getCommands().forEach(command -> {
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("{player}", player.getName()));
@@ -87,6 +108,8 @@ public class PaymentListener implements Listener {
                 );
 
                 Core.getDiscord().sendEmbed(SELL, builder);
+
+                user.setTotalPaid(user.getTotalPaid() + product.getPrice());
             }
         }).execute();
 

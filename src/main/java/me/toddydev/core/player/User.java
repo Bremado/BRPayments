@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
@@ -16,10 +17,12 @@ public class User {
     private String name;
 
     private int totalOrders;
-    private int totalPaid;
-    private int totalRefunded;
+    private double totalPaid;
+    private double totalRefunded;
 
     private double balance;
+
+    private ItemStack itemInHand;
 
     public User(UUID uniqueId, String name) {
         this.uniqueId = uniqueId;

@@ -3,13 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.toddydev</groupId>
   <artifactId>BRPayments</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1.3-BETA</version>
   <build>
     <defaultGoal>clean install</defaultGoal>
     <plugins>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>2.4</version>
+        <version>3.1.0</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -58,10 +58,6 @@
       <version>2.11.4</version>
       <scope>provided</scope>
       <exclusions>
-        <exclusion>
-          <artifactId>bstats-bukkit</artifactId>
-          <groupId>org.bstats</groupId>
-        </exclusion>
         <exclusion>
           <artifactId>adventure-platform-bukkit</artifactId>
           <groupId>net.kyori</groupId>
