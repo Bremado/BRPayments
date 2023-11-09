@@ -14,7 +14,10 @@ import org.bukkit.entity.Player;
 public class ShopCommand extends BukkitCommand {
     public ShopCommand() {
         super(
-                "shop"
+                "shop",
+                "",
+                "loja", "comprar", "comprarpix",
+                "pix"
         );
     }
 

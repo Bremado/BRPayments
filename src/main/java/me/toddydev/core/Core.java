@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import me.toddydev.core.database.Database;
 import me.toddydev.discord.Discord;
-import org.bukkit.Sound;
 
 public class Core {
 

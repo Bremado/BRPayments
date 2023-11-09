@@ -8,6 +8,9 @@ command-shop-product-usage: "&cSintaxe incorreta, utilize '/shop product [produt
 command-shop-category-usage: "&cSintaxe incorreta, utilize '/shop category [categoria]' para ver os produtos de uma categoria."
 command-shop-category-not-found: "&cA categoria digitada não existe."
 
+menu-shop-error: "&cOcorreu um erro ao iniciar o menu de interação. Reporte a um administrador para a correção do problema."
+
 item-qrcode-name: "&aQR Code"
 item-qrcode-description:
   - "&7O pagamento será processado em 2 minutos."
+

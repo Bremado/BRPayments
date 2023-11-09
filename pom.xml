@@ -71,7 +71,7 @@
             <artifactId>spigot</artifactId>
             <version>1.8-R0.1-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>D:/workspace/spigot.jar</systemPath>
+            <systemPath>C:/workspace/spigot.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
