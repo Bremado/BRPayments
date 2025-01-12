@@ -1,5 +1,7 @@
 # BRPayments - Sua solução inovadora de monetizar seu servidor!
 
+## Projeto descontinuado!
+
 ## Introdução
 
 O **BRPayments** é uma adição versátil e fácil de usar para o seu servidor Minecraft que permite aos jogadores fazer compras dentro do jogo usando métodos de pagamentos reais. Com este plugin, os donos de servidores podem monetizar seus servidores Minecraft, oferecendo uma experiência perfeita e agradável para seus jogadores.
